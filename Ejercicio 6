@@ -1,0 +1,28 @@
+.data
+    NROA: .word 1
+    NROB: .word 2
+    NROC: .word 1
+    NROD: .word 0
+
+.code
+    ld R1, NROA(R0) 
+    ld R2, NROB(R0) 
+    ld R3, NROC(R0)
+    ld R4, NROD(R0)
+    DADDI r10,r0,1
+    
+    bne R1, R2, con
+    DADDI R4, R4, 1
+    con: bne r2,r3 , cont
+    DADDI r4,r4, 1 
+    cont: bne r3,r1, conti
+    DADDI r4,r4,1
+    
+    conti: bne r4,r10,TERMINAR
+    DADDI r4,r4,1
+
+   
+    TERMINAR: sd R4, NROD(R0)
+
+
+    FIN: HALT
